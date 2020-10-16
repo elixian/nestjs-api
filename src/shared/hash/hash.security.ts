@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import {  genSalt,hash ,compare} from 'bcrypt';
+import { compare, genSalt, hash } from 'bcrypt';
+
 
 @Injectable()
 export class HashSecurity{
