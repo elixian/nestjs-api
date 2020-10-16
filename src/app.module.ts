@@ -1,3 +1,4 @@
+import { SecurityModule } from './shared/security.module';
 import { AuthService } from './auth/auth.service';
 import { AuthController } from './auth/auth.controller';
 import { UserModule } from './user/user.module';
@@ -9,6 +10,7 @@ import { Config } from './config/config';
 @Module({
 
   imports: [
+    SecurityModule,
     UserModule,
     MongooseModule.forRootAsync({
       useFactory: () => ({
