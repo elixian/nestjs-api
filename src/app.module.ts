@@ -1,3 +1,4 @@
+import { AuthModule } from './auth/auth.module';
 import { SecurityModule } from './shared/security.module';
 import { AuthService } from './auth/auth.service';
 import { AuthController } from './auth/auth.controller';
@@ -10,8 +11,8 @@ import { Config } from './config/config';
 @Module({
 
   imports: [
-    SecurityModule,
-    UserModule,
+   
+    AuthModule,
     MongooseModule.forRootAsync({
       useFactory: () => ({
         uri: Config.MONGO_URI,
@@ -23,8 +24,8 @@ import { Config } from './config/config';
     }),
   ],
   controllers: [
-    AuthController],
+    ],
   providers: [
-    AuthService],
+    ],
 })
 export class AppModule { }

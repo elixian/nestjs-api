@@ -37,9 +37,10 @@ import { HashSecurity } from '../shared/hash/hash.security';
 
     ],
     controllers: [UserController],
-    providers: [UserService,],
+    providers: [UserService],
     exports: [
-        UserService
+        UserService,
+        MongooseModule.forFeature([{ name: 'User', schema: UserSchema }])
     ]
 
 })

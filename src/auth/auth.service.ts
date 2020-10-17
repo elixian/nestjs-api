@@ -1,16 +1,19 @@
+import { JwtService } from '@nestjs/jwt';
 import { HashSecurity } from './../shared/hash/hash.security';
 import { UserDto } from './../user/dto/user.dto';
 import { UserService } from './../user/user.service';
 import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { CredentialsDto } from './dto/credentials.dto';
-import { UserDocument } from 'src/user/model/user.schema';
+
+
 
 
 @Injectable()
 export class AuthService {
     constructor(
+        private readonly jwtService:JwtService,
         private readonly userService: UserService,
-
+        
     ) { }
 
 
@@ -21,13 +24,14 @@ export class AuthService {
     }
 
     async signIn(credentialsDto : CredentialsDto): Promise<string>{
-        const {password} = credentialsDto;
+        const {password,username} = credentialsDto;
 
         const user = await this.userService.getUserByName(credentialsDto.username);
-
+        const payload = {username};
+        const accessToken = await this.jwtService.sign(payload);
         const isMatch = await HashSecurity.validatePassword(password,user.password);
         if(isMatch){
-            return user.username;
+            return accessToken;
         }
         throw new UnauthorizedException('Invalid credentials');
     }
