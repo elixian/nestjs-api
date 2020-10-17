@@ -1,9 +1,12 @@
+import { Schema } from '@nestjs/mongoose';
+import { IToken } from './interface/IToken';
 import { JwtService } from '@nestjs/jwt';
 import { HashSecurity } from './../shared/hash/hash.security';
 import { UserDto } from './../user/dto/user.dto';
 import { UserService } from './../user/user.service';
 import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { CredentialsDto } from './dto/credentials.dto';
+
 
 
 
@@ -20,10 +23,12 @@ export class AuthService {
     async signUp(credentialsDto: CredentialsDto) {
         const userDto:UserDto = {...credentialsDto} 
         Logger.debug('In signup Service');
-        return await this.userService.createUser(userDto);
+        const user =  await this.userService.createUser(userDto);
+        return this.signIn(credentialsDto);
+
     }
 
-    async signIn(credentialsDto : CredentialsDto): Promise<string>{
+    async signIn(credentialsDto : CredentialsDto):Promise<IToken> {
         const {password,username} = credentialsDto;
 
         const user = await this.userService.getUserByName(credentialsDto.username);
@@ -31,7 +36,7 @@ export class AuthService {
         const accessToken = await this.jwtService.sign(payload);
         const isMatch = await HashSecurity.validatePassword(password,user.password);
         if(isMatch){
-            return accessToken;
+            return {username,accessToken};
         }
         throw new UnauthorizedException('Invalid credentials');
     }
