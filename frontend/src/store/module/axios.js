@@ -18,7 +18,7 @@ export default {
     mutations:{
         SET_USER(state, credential){
             state.user.username = credential.username;
-            state.user.token = credential.accesstoken;
+            state.user.token = credential.accessToken;
             state.user.register = !state.user.register;
         }
     },
