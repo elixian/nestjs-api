@@ -14,6 +14,7 @@ export class UserService implements IUser {
 
     async createUser(userDto : UserDto):Promise<UserDocument>{
         const user:UserDocument =  new this.userModel(userDto);
+        Logger.debug(userDto,'UserService')
         try {
             await user.save();
         } catch (error) {

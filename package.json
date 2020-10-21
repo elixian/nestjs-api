@@ -6,5 +6,8 @@
     "serve": "concurrently -n vue,api \"yarn --cwd ./frontend serve --silent\" \"yarn --cwd ./api-nestjs start:dev\" ",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "concurrently": "^5.3.0"
   }
 }

@@ -23,6 +23,7 @@ let UserService = class UserService {
     }
     async createUser(userDto) {
         const user = new this.userModel(userDto);
+        common_1.Logger.debug(userDto, 'UserService');
         try {
             await user.save();
         }
