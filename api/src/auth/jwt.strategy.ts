@@ -15,6 +15,7 @@ export class JwtStrategy extends PassportStrategy(Strategy){
         private userModel: Model<UserDocument>,
     ){
         
+        
         super({
             jwtFromRequest : ExtractJwt.fromAuthHeaderAsBearerToken(),
             secretOrKey : 'toto',
