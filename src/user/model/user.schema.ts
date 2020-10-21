@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { ApiProperty } from "@nestjs/swagger";
 import { Document} from 'mongoose';
 
 export type UserDocument = User & Document;
@@ -6,6 +7,7 @@ export type UserDocument = User & Document;
 @Schema()
 export class User {
     @Prop()
+    @ApiProperty({ example: 1, description: 'Date de création' })
     createdAt: Date;
     @Prop({
         required: true,

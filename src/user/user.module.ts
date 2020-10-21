@@ -1,9 +1,10 @@
+
 import { SecurityModule } from './../shared/security.module';
 import { UserService } from './user.service';
 import { UserController } from './user.controller';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { User, UserSchema, UserDocument } from './model/user.schema';
+import { User, UserSchema } from './model/user.schema';
 import { HashSecurity } from '../shared/hash/hash.security';
 
 @Module({
@@ -38,10 +39,6 @@ import { HashSecurity } from '../shared/hash/hash.security';
     ],
     controllers: [UserController],
     providers: [UserService],
-    exports: [
-        UserService,
-        MongooseModule.forFeature([{ name: 'User', schema: UserSchema }])
-    ]
-
+  
 })
 export class UserModule { }

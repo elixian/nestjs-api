@@ -1,3 +1,4 @@
+import { UserDocument } from './../user/model/user.schema';
 import { Schema } from '@nestjs/mongoose';
 import { IToken } from './interface/IToken';
 import { JwtService } from '@nestjs/jwt';
@@ -22,8 +23,7 @@ export class AuthService {
 
     async signUp(credentialsDto: CredentialsDto) {
         const userDto:UserDto = {...credentialsDto} 
-        Logger.debug('In signup Service');
-        const user =  await this.userService.createUser(userDto);
+        await this.userService.createUser(userDto);
         return this.signIn(credentialsDto);
 
     }
@@ -40,6 +40,7 @@ export class AuthService {
         }
         throw new UnauthorizedException('Invalid credentials');
     }
-   
+
+
 }
 
