@@ -1,0 +1,1 @@
+{"version":3,"file":"security.module.js","sourceRoot":"","sources":["../../src/shared/security.module.ts"],"names":[],"mappings":";;;;;;;;;AAAA,wDAAoD;AACpD,2CAAwC;AAQxC,IAAa,cAAc,GAA3B,MAAa,cAAc;CAAI,CAAA;AAAlB,cAAc;IAN1B,eAAM,CAAC;QACJ,OAAO,EAAE,EAAE;QACX,WAAW,EAAE,EAAE;QACf,SAAS,EAAE,CAAC,4BAAY,CAAC;QACzB,OAAO,EAAC,CAAC,4BAAY,CAAC;KACzB,CAAC;GACW,cAAc,CAAI;AAAlB,wCAAc"}
