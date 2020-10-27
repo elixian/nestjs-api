@@ -1757,8 +1757,8 @@
         "affectsGlobalScope": false
       },
       "../src/auth/interface/itoken.ts": {
-        "version": "4282c08ba50f654beec35d8da4b016f5c50fd48ab0aef56691c984f355dc82fe",
-        "signature": "996ccb430ac7eafb59651e4ceb8ed5cf2862791156019b39d70f5234e0bec5e7",
+        "version": "a2a4a2f4ad1116ca17bb530f7f77b5df3be8334b8b8438d42bb6b09b6d0abb4f",
+        "signature": "9f44cb429bc9a8e85dc052673f1a7a659d610f245830205acac23cac72dfef28",
         "affectsGlobalScope": false
       },
       "../node_modules/class-validator/types/validation/validationerror.d.ts": {
@@ -2427,12 +2427,12 @@
         "affectsGlobalScope": false
       },
       "../src/user/user.service.ts": {
-        "version": "8a643308516fd52fabb0d3951379427ccc6a290be098f6a10ea25d6c0d7e944e",
+        "version": "039473d4e5feba7f7d201618613a14ae0601a8586a353e9bdda6d393d13c9e79",
         "signature": "4fd271f372812eb67b719a40d7250b3a5f30f76098b135728d9d26f331b6b224",
         "affectsGlobalScope": false
       },
       "../src/auth/auth.service.ts": {
-        "version": "8700dc4feebc1b5cb7c1d48d3d769b9f4af9bc9d352615a6c62a6fe1cb1ffec9",
+        "version": "bcf5d7e231978bcdb800ab9dbf0530796ea10dc54b0d061a95c7ad4f30b0810c",
         "signature": "8f38e02658ebe57ded8d9d554558b337688d6185dfcc04d7c84fec564547c49d",
         "affectsGlobalScope": false
       },

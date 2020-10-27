@@ -46,7 +46,6 @@ let UserService = class UserService {
     }
     async getListUsers() {
         const user = await this.userModel.find();
-        common_1.Logger.debug(`user service => ${user}`);
         if (!user.length) {
             throw new common_1.NotFoundException();
         }

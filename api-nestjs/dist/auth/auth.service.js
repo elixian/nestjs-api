@@ -40,7 +40,7 @@ let AuthService = class AuthService {
                 common_1.Logger.error(`isMatch : ${JSON.stringify(credentialsDto)}`, null, 'AuthService signIn');
                 const payload = { username };
                 const accessToken = await this.jwtService.sign(payload);
-                return { username, accessToken };
+                return { username, accessToken, id: user.id };
             }
             throw new common_1.UnauthorizedException('Invalid credentials');
         }

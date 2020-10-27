@@ -37,13 +37,18 @@ export class AuthService {
         Logger.error(`credential : ${JSON.stringify(credentialsDto)}`,null, 'AuthService signIn');
 
         try {
+            //retrieve User
             const user = await this.userService.getUserByName(credentialsDto.username);
+            //Check password
             const isMatch = await HashSecurity.validatePassword(password, user.password);
+
             if (isMatch) {
                 Logger.error(`isMatch : ${JSON.stringify(credentialsDto)}`,null, 'AuthService signIn');
+                //on créé le Token
                 const payload = { username };
                 const accessToken = await this.jwtService.sign(payload);
-                return { username, accessToken };
+                // on retourne les infos que l'on veut retourner :p
+                return { username, accessToken, id:user.id };
             }
             throw new UnauthorizedException('Invalid credentials');
         } catch (error) {

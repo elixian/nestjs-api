@@ -39,7 +39,6 @@ export class UserService implements IUser {
     async getListUsers():Promise<UserDocument[]>{
         
         const user:UserDocument[] = await this.userModel.find();
-        Logger.debug(`user service => ${user}`)
         if(!user.length ){
             throw new NotFoundException();
         }
