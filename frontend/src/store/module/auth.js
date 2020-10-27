@@ -22,6 +22,7 @@ export default {
         RESET_USER(state){
             state.user = null;
             axios.defaults.headers.common['Authorization'] = ``;
+            localStorage.removeItem('user');
         }
     },
     actions: {
