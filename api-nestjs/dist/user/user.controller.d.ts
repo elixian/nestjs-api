@@ -4,4 +4,8 @@ export declare class UserController {
     private userService;
     constructor(userService: UserService);
     getAllUsers(): Promise<UserDocument[]>;
+    uploadedFile(file: any): Promise<{
+        originalname: any;
+        filename: any;
+    }>;
 }

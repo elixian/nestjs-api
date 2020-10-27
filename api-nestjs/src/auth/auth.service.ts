@@ -34,10 +34,13 @@ export class AuthService {
 
     async signIn(credentialsDto: CredentialsDto): Promise<IToken> {
         const { password, username } = credentialsDto;
+        Logger.error(`credential : ${JSON.stringify(credentialsDto)}`,null, 'AuthService signIn');
+
         try {
             const user = await this.userService.getUserByName(credentialsDto.username);
             const isMatch = await HashSecurity.validatePassword(password, user.password);
             if (isMatch) {
+                Logger.error(`isMatch : ${JSON.stringify(credentialsDto)}`,null, 'AuthService signIn');
                 const payload = { username };
                 const accessToken = await this.jwtService.sign(payload);
                 return { username, accessToken };

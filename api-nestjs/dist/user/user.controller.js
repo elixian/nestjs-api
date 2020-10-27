@@ -8,18 +8,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const user_service_1 = require("./user.service");
 const common_1 = require("@nestjs/common");
 const passport_1 = require("@nestjs/passport");
 const swagger_1 = require("@nestjs/swagger");
+const platform_express_1 = require("@nestjs/platform-express");
+const multer_1 = require("multer");
+const path_1 = require("path");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
     }
     async getAllUsers() {
         return await this.userService.getListUsers();
+    }
+    async uploadedFile(file) {
+        const response = {
+            originalname: file.originalname,
+            filename: file.filename,
+        };
+        return response;
     }
 };
 __decorate([
@@ -30,8 +43,35 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "getAllUsers", null);
+__decorate([
+    common_1.Post('upload'),
+    common_1.UseInterceptors(platform_express_1.FileInterceptor('image', {
+        storage: multer_1.diskStorage({
+            destination: './files',
+            filename: (req, file, callback) => {
+                const name = file.originalname.split('.')[0];
+                const fileExtName = path_1.extname(file.originalname);
+                const randomName = Array(4)
+                    .fill(null)
+                    .map(() => Math.round(Math.random() * 16).toString(16))
+                    .join('');
+                callback(null, `${name}-${randomName}${fileExtName}`);
+            },
+        }),
+        fileFilter: (req, file, callback) => {
+            if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
+                return callback(new Error('Only image files are allowed!'), false);
+            }
+            callback(null, true);
+        },
+    })),
+    __param(0, common_1.UploadedFile()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "uploadedFile", null);
 UserController = __decorate([
-    swagger_1.ApiTags('auth'),
+    swagger_1.ApiTags('user'),
     common_1.Controller('user'),
     __metadata("design:paramtypes", [user_service_1.UserService])
 ], UserController);

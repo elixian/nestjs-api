@@ -1,0 +1,20 @@
+
+
+.ml\(auto\){
+    margin-left: auto;
+}
+
+@for $i from 1 through 6 {
+    $v :$i * 5;
+    .mb\(#{$v}px\) {
+        margin-bottom: $v * 1px;
+    }
+    
+    .mt\(#{$v}px\){
+        margin-top: $v * 1px;
+        }
+}
+
+.d\(flex\){
+    display:flex;
+}

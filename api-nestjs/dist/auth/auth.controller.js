@@ -45,10 +45,10 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "signUp", null);
 __decorate([
-    common_1.Get('signin'),
+    common_1.Post('signin'),
     swagger_1.ApiResponse({ status: 401, description: 'Forbidden.' }),
     swagger_1.ApiOperation({ summary: 'Authentification' }),
-    __param(0, common_1.Body(common_1.ValidationPipe)),
+    __param(0, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [credentials_dto_1.CredentialsDto]),
     __metadata("design:returntype", Promise)

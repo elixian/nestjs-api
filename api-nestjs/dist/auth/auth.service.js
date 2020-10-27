@@ -32,10 +32,12 @@ let AuthService = class AuthService {
     }
     async signIn(credentialsDto) {
         const { password, username } = credentialsDto;
+        common_1.Logger.error(`credential : ${JSON.stringify(credentialsDto)}`, null, 'AuthService signIn');
         try {
             const user = await this.userService.getUserByName(credentialsDto.username);
             const isMatch = await hash_security_1.HashSecurity.validatePassword(password, user.password);
             if (isMatch) {
+                common_1.Logger.error(`isMatch : ${JSON.stringify(credentialsDto)}`, null, 'AuthService signIn');
                 const payload = { username };
                 const accessToken = await this.jwtService.sign(payload);
                 return { username, accessToken };
