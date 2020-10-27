@@ -19,8 +19,7 @@ AppModule = __decorate([
     common_1.Module({
         imports: [
             serve_static_1.ServeStaticModule.forRoot({
-                rootPath: path_1.join(__dirname, '..', 'files'),
-                exclude: ['/api*'],
+                rootPath: path_1.join(__dirname, '..', 'files')
             }),
             auth_module_1.AuthModule,
             mongoose_1.MongooseModule.forRootAsync({

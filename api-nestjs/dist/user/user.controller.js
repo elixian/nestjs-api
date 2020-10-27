@@ -27,8 +27,9 @@ let UserController = class UserController {
     async getAllUsers() {
         return await this.userService.getListUsers();
     }
-    async image() {
-        return '/file/Florian-275.jpg';
+    test(res) {
+        common_1.Logger.debug(res.sendFile('Florian-1f79.jpg', { root: 'files' }));
+        return res.sendFile('Florian-1f79.jpg', { root: 'files' });
     }
     async uploadedFile(file) {
         const response = {
@@ -48,16 +49,18 @@ __decorate([
 ], UserController.prototype, "getAllUsers", null);
 __decorate([
     common_1.Get(),
+    __param(0, common_1.Res()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], UserController.prototype, "image", null);
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], UserController.prototype, "test", null);
 __decorate([
     common_1.Post('upload'),
-    common_1.UseInterceptors(platform_express_1.FileInterceptor('image', {
+    common_1.UseInterceptors(platform_express_1.FileInterceptor('file', {
         storage: multer_1.diskStorage({
             destination: './files',
             filename: (req, file, callback) => {
+                common_1.Logger.debug('upload', file);
                 const name = file.originalname.split('.')[0];
                 const fileExtName = path_1.extname(file.originalname);
                 const randomName = Array(4)

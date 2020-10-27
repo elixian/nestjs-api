@@ -14,8 +14,7 @@ import { join } from 'path';
 
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'files'),
-      exclude: ['/api*'],
+      rootPath: join(__dirname, '..', 'files')
     }),
     AuthModule,
     MongooseModule.forRootAsync({
