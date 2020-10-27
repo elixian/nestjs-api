@@ -6,6 +6,7 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
+import { get } from 'http';
 @ApiTags('user')
 @Controller('user')
 export class UserController {
@@ -20,6 +21,10 @@ export class UserController {
         return await this.userService.getListUsers();
     }
 
+    @Get()
+    async image():Promise<String>{
+        return '/file/Florian-275.jpg'
+    }
 
 
     

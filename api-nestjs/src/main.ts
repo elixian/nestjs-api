@@ -1,4 +1,5 @@
 import { NestFactory } from '@nestjs/core';
+import { ServeStaticModule } from '@nestjs/serve-static';
 import { AppModule } from './app.module';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import { Config } from './config/config';
@@ -6,9 +7,11 @@ import { Logger } from '@nestjs/common';
 
 import { SwaggerModule } from '@nestjs/swagger/dist/swagger-module';
 import { DocumentBuilder } from '@nestjs/swagger';
+import { join } from 'path';
 
 async function bootstrap() {
 
+  
   // start in memory mongo server for development
   if (process.env.NODE_ENV !== 'production') {
     const mongod = new MongoMemoryServer();

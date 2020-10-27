@@ -27,6 +27,9 @@ let UserController = class UserController {
     async getAllUsers() {
         return await this.userService.getListUsers();
     }
+    async image() {
+        return '/file/Florian-275.jpg';
+    }
     async uploadedFile(file) {
         const response = {
             originalname: file.originalname,
@@ -43,6 +46,12 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "getAllUsers", null);
+__decorate([
+    common_1.Get(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "image", null);
 __decorate([
     common_1.Post('upload'),
     common_1.UseInterceptors(platform_express_1.FileInterceptor('image', {
