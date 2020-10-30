@@ -1,5 +1,6 @@
 # compiled output
 */dist
+api-nestjs/dist/*
 */node_modules
 node_modules
 
@@ -55,3 +56,4 @@ files/*
 *.njsproj
 *.sln
 *.sw?
+
