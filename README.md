@@ -26,13 +26,11 @@ $ npm install install:api-vue
 
 ```bash
 # development
-$ npm run serve
+$ npm run serve:dev
 
-# watch mode
-$ npm run start:dev
 
 # production mode
-$ npm run start:prod
+$ npm run start:prod 
 ```
 
 ## License
