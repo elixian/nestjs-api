@@ -2622,7 +2622,7 @@
         "affectsGlobalScope": false
       },
       "../src/auth/roles.guard.ts": {
-        "version": "387559b66340c1b903e65e940b56f883e11adafc4d81ffa584004e7e5a3c065c",
+        "version": "41ee1504f91c9be90fada278dc514c459c829927036cd728156c1d8f875f8318",
         "signature": "00b53fd66ea0468fd6c66ef05ea8b0d4adace33b5564b709e3294cf171502c67",
         "affectsGlobalScope": false
       },
@@ -2717,7 +2717,7 @@
         "affectsGlobalScope": false
       },
       "../src/user/user.roles.ts": {
-        "version": "75bdad680eb9e03b407f244789ab52a8833ee5dacce4ed44a1139d141c9bf56a",
+        "version": "40a5e932714a9ca8dc7b32545e7849cb355fc447e5e8fecd2f92aa565e2dd91b",
         "signature": "0654105d528a0494963e5616800b6432d7c1f263b820e5f1497f414dbdb5aaf0",
         "affectsGlobalScope": false
       },
