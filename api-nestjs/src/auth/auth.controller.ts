@@ -18,7 +18,7 @@ export class AuthController {
     @Post('signup')
     @ApiResponse({ status: 200, description: 'Return JWT payload' })
     @ApiResponse({ status: 400, description: 'Bad Request (account already exists, validation failed, ...)' })
-    @ApiResponse({ status: 401, description: 'Unauthorized' })
+    @ApiResponse({ status: 401, description: 'Ce compte existe déjà' })
     @ApiOperation({ summary: 'Create new user' })
     async signUp(@Body(ValidationPipe) credentialDto: CredentialsDto): Promise<IToken> {
         return await this.authService.signUp(credentialDto);

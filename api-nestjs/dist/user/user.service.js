@@ -29,7 +29,7 @@ let UserService = class UserService {
         }
         catch (error) {
             if (error.code === 11000) {
-                throw new common_1.ConflictException('Username already exist');
+                throw new common_1.HttpException('Username already exist', common_1.HttpStatus.BAD_REQUEST);
             }
             else {
                 throw new common_1.InternalServerErrorException();

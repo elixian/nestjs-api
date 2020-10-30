@@ -2427,12 +2427,12 @@
         "affectsGlobalScope": false
       },
       "../src/user/user.service.ts": {
-        "version": "e1e475156558de81027881b127a74adee079195bd5881e7f2541333cb5782dba",
+        "version": "9bde64c7dc7e3f64216b85306bb6052afe7fe0eeb4c0fc4f21a8102a6251aa65",
         "signature": "4fd271f372812eb67b719a40d7250b3a5f30f76098b135728d9d26f331b6b224",
         "affectsGlobalScope": false
       },
       "../src/auth/auth.service.ts": {
-        "version": "d8e1767fea83aef6777f45cfe7fa401054a4b0ca38f0ca364a94494fc706106d",
+        "version": "2d4a54bed3d1895258a3bcd56bd24b192dc3533bd097c21b41eb0db8d2e9d960",
         "signature": "8f38e02658ebe57ded8d9d554558b337688d6185dfcc04d7c84fec564547c49d",
         "affectsGlobalScope": false
       },
@@ -2632,7 +2632,7 @@
         "affectsGlobalScope": false
       },
       "../src/auth/auth.controller.ts": {
-        "version": "e9ddd0b532431ac19c35cc3887347a0724020d7c4d756f0a7c4e3dd01e11a896",
+        "version": "3010d85aa66d4f18226c9ce3100f26ad539cbd639eacbe06c3c537f8ff923269",
         "signature": "70c09f30eb5c0aed234e683dd168c97dfefba582e3af3e4d0b8ff65c5e4b960a",
         "affectsGlobalScope": false
       },

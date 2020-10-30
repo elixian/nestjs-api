@@ -27,7 +27,7 @@ let AuthService = class AuthService {
         }
         catch (error) {
             common_1.Logger.error(`Failed to signUp for user : ${JSON.stringify(credentialsDto.username)}`, error.stack, 'AuthService');
-            throw new common_1.UnauthorizedException();
+            throw new common_1.ConflictException(error.message);
         }
     }
     async signIn(credentialsDto) {
