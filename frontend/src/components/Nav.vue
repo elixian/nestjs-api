@@ -7,6 +7,7 @@
     </div>
     <div class="nav-site" v-if="isAdmin">
        <router-link class="b-link" to="/admin">Admin</router-link>
+       <router-link class="b-link" to="/register">AddUSers</router-link>
     </div>
     <div class="ml(auto) d(flex)">
       <ul class="b-link">

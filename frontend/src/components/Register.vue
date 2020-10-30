@@ -1,17 +1,30 @@
 <template>
   <div>
     <form id="form-register" @submit.prevent="register">
-      <h2>Enregistrement</h2>
+      <h2>Ajouter un utilisateur</h2>
       <div class="W-inputs">
         <label class="mb(30px) mt(10px)" for="username">
           Nom utilisateur
-          <input type="text" name="username" v-model="username"
+          <input type="text" name="username" v-model="user.username"
         /></label>
 
         <label class="mb(30px)" for="password">
           Mot de passe
-          <input type="password" name="password" v-model="password"
+          <input type="password" name="password" v-model="user.password"
         /></label>
+
+        <label class="mb(30px)" for="password">
+          role
+          <select name="role" id="" v-model="user.role">
+            <option value="" selected disabled>Choisissez</option>
+            <option
+              v-for="(key, value, index) in listRoles"
+              :key="index"
+              :value="key"
+              >{{ value }}</option
+            >
+          </select>
+        </label>
 
         <div>
           <button type="submit">Register</button>
@@ -26,24 +39,35 @@
 
 <script>
 import { mapActions } from "vuex";
+import { Roles } from "@/store/enum/roles";
 export default {
+
   data() {
     return {
-      username: "",
-      password: "",
+      user: {
+        username: "",
+        password: "",
+        role: null,
+      },
+
       errors: null,
     };
+  },
+  computed: {
+    listRoles: function() {
+      console.log(Roles);
+      return Roles;
+    },
   },
   methods: {
     ...mapActions("auth", ["registerUser"]),
     register() {
-      console.log("in register");
-      this.registerUser({
-        username: this.username,
-        password: this.password,
-      })
+      this.registerUser(this.user)
         .then(() => this.$router.push({ path: "/" }))
-        .catch((err) => (this.errors = err.response.data.message));
+        .catch((err) =>{
+          this.errors = err.data;
+          this.user = {}
+        });
     },
   },
 };
@@ -62,11 +86,11 @@ export default {
   align-items: center;
 }
 
-.W-inputs{
-    flex: 1 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.W-inputs {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 </style>

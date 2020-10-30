@@ -29,14 +29,10 @@ export default {
         }
     },
     actions: {
-        registerUser({
-            commit
-        }, credentials) {
+        registerUser(_, credentials) {
             return new Promise((resolve, reject) => {
-                axios.post('auth/signup', credentials).then(
-                    ({data}) => resolve(commit('SET_USER', data))
-                ).catch(err => {
-                    reject(err)
+                axios.post('auth/signup', credentials).catch(({response}) => {
+                    reject(response)
                 })
             })
         },

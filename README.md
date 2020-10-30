@@ -7,7 +7,7 @@
 
 ## Description
 
-Template Frontend / Backend (Vuejs / Nesjs)
+Template Frontend / Backend (Vuejs / Nestjs)
 Api data nosql
 
 ## Installation

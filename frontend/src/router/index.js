@@ -15,7 +15,10 @@ const routes = [
     {
         path: '/register',
         name: 'Register',
-        component: () => import( /* webpackChunkName: "NotFound" */ '../components/Register.vue')
+        component: () => import( /* webpackChunkName: "NotFound" */ '../views/Register.vue'),
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/signin',
