@@ -38,5 +38,10 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], CredentialsDto.prototype, "password", void 0);
+__decorate([
+    class_validator_1.IsString(),
+    swagger_1.ApiProperty(),
+    __metadata("design:type", String)
+], CredentialsDto.prototype, "role", void 0);
 exports.CredentialsDto = CredentialsDto;
 //# sourceMappingURL=credentials.dto.js.map

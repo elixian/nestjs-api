@@ -25,4 +25,8 @@ export class CredentialsDto {
         }
     )
     public password:string;
+
+    @IsString()
+    @ApiProperty()
+    public role:string
 }

@@ -1,11 +1,13 @@
 <template>
-  <div id="header-bar-nav">
+  <div id="header-bar-nav" class="d(flex)">
     <div class="b-img">
       <router-link to="/"
         ><img class="img" src="@/assets/logo.png" alt="" srcset=""
       /></router-link>
     </div>
-
+    <div class="nav-site" v-if="login">
+       <router-link class="b-link" to="/admin">Admin</router-link>
+    </div>
     <div class="ml(auto) d(flex)">
       <ul class="b-link">
         <template v-if="!login">
@@ -13,11 +15,11 @@
           <li><router-link to="/signin">Se connecter</router-link></li>
         </template>
         <template v-else>
-          <li @click="signOut">LogOut</li>
-          <router-link class="b-link" to="/admin">Admin</router-link>
           <div v-if="login">
-            {{ user.username }}
+            Bonjour {{ user.username }}
           </div>
+          <li @click="signOut"><a @mouseup.prevent>Se déconnecter</a></li>
+          
         </template>
       </ul>
     </div>
@@ -61,13 +63,29 @@ $a-tags-hover: "a:active, a:hover";
     }
   }
 
+  .nav-site{
+    $color-link-nav: #076807;
+    flex:1 0 auto;
+    text-align: center;
+    align-self: auto;
+    font-size: 1.8rem;
+    #{$a-tags}{
+      text-decoration: none;
+      color: $color-link-nav;
+    }
+    #{$a-tags-hover}{
+      color: lighten($color-link-nav,15%)
+    }
+  }
+
   .b-link {
     li {
-      margin: 0 5px;
+      margin: 0 10px;
     }
     #{$a-tags} {
       text-decoration: none;
       color: crimson;
+      cursor:pointer;
     }
     #{$a-tags-hover} {
       text-decoration: none;

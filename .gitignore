@@ -44,6 +44,9 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# Untrack files in files folder
+files/*
+
 # Editor directories and files
 .idea
 .vscode

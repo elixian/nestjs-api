@@ -11,11 +11,16 @@ const auth_module_1 = require("./auth/auth.module");
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const config_1 = require("./config/config");
+const serve_static_1 = require("@nestjs/serve-static");
+const path_1 = require("path");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     common_1.Module({
         imports: [
+            serve_static_1.ServeStaticModule.forRoot({
+                rootPath: path_1.join(__dirname, '..', 'files')
+            }),
             auth_module_1.AuthModule,
             mongoose_1.MongooseModule.forRootAsync({
                 useFactory: () => ({

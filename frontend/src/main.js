@@ -3,15 +3,19 @@ import App from './App.vue'
 import axios from 'axios'
 import store from './store/index'
 import router from './router/index'
+import ConsoleLogPluggin from './helpers/clog'
 
 Vue.prototype.$DEBUG = process.env.NODE_ENV !== "production";
-
 Vue.config.productionTip = false
-axios.defaults.baseURL = "http://localhost:3000/"
+axios.defaults.baseURL = process.env.VUE_APP_ROOT_API
+
+
+
+Vue.use(ConsoleLogPluggin);
+
 new Vue({
   store,
   router,
-
   created() {
     
     const userString = localStorage.getItem('user');

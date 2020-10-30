@@ -32,15 +32,16 @@ let AuthService = class AuthService {
     }
     async signIn(credentialsDto) {
         const { password, username } = credentialsDto;
-        common_1.Logger.error(`credential : ${JSON.stringify(credentialsDto)}`, null, 'AuthService signIn');
+        common_1.Logger.log(`credential : ${JSON.stringify(credentialsDto)}`, 'AuthService signIn');
         try {
             const user = await this.userService.getUserByName(credentialsDto.username);
             const isMatch = await hash_security_1.HashSecurity.validatePassword(password, user.password);
             if (isMatch) {
-                common_1.Logger.error(`isMatch : ${JSON.stringify(credentialsDto)}`, null, 'AuthService signIn');
-                const payload = { username };
+                common_1.Logger.log(`isMatch : ${JSON.stringify(credentialsDto)}`, 'AuthService signIn');
+                const payload = { username, role: user.role };
+                common_1.Logger.log(payload, 'payload ');
                 const accessToken = await this.jwtService.sign(payload);
-                return { username, accessToken };
+                return { username, accessToken, role: user.role };
             }
             throw new common_1.UnauthorizedException('Invalid credentials');
         }

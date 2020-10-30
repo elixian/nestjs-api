@@ -3,7 +3,6 @@
     <app-header-nav />
 
     <div id="main">
-      
       <router-view />
     </div>
 

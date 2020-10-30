@@ -8,4 +8,5 @@ export declare class AuthController {
     signUp(credentialDto: CredentialsDto): Promise<IToken>;
     signIn(credentialDto: CredentialsDto): Promise<IToken>;
     test(user: User): Promise<void>;
+    testRoleGuard(): Promise<void>;
 }
