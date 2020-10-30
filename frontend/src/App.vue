@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import CompNavVue from "./components/CompNav.vue";
+import NavVue from "./components/Nav.vue";
 import authComputed from "@/store/helpers/helpers";
 
 export default {
   components: {
-    appHeaderNav: CompNavVue,
+    appHeaderNav: NavVue,
   },
   computed: {
     ...authComputed,
