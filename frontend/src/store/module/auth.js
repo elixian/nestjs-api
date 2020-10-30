@@ -9,6 +9,9 @@ export default {
         user: state => {
             return state.user;
         },
+        isAdmin: state =>{
+            return !!state.user && state.user.role === 'admin'
+        },
         login: state => {
             return !!state.user;
         }

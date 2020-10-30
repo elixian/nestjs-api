@@ -5,7 +5,7 @@
         ><img class="img" src="@/assets/logo.png" alt="" srcset=""
       /></router-link>
     </div>
-    <div class="nav-site" v-if="login">
+    <div class="nav-site" v-if="isAdmin">
        <router-link class="b-link" to="/admin">Admin</router-link>
     </div>
     <div class="ml(auto) d(flex)">
@@ -28,7 +28,7 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import { authComputed } from "@/store/helpers/helpers";
+import { authComputed, isAdmin } from "@/store/helpers/helpers";
 export default {
   data() {
     return {};
@@ -36,6 +36,7 @@ export default {
   computed: {
     ...mapGetters("auth", ["user"]),
     ...authComputed,
+    ...isAdmin,
   },
   methods: {
     ...mapActions("auth", ["logOut"]),

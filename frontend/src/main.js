@@ -21,7 +21,7 @@ new Vue({
     const userString = localStorage.getItem('user');
     if (userString) {
       const userData = JSON.parse(userString);
-      if (this.$DEBUG) console.log('userData', userData)
+      if (this.$DEBUG) console.log('Created() main.js', userData)
       this.$store.commit('auth/SET_USER',userData);
 
       axios.interceptors.response.use(
