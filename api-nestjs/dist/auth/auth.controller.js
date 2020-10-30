@@ -43,7 +43,7 @@ __decorate([
     common_1.Post('signup'),
     swagger_1.ApiResponse({ status: 200, description: 'Return JWT payload' }),
     swagger_1.ApiResponse({ status: 400, description: 'Bad Request (account already exists, validation failed, ...)' }),
-    swagger_1.ApiResponse({ status: 401, description: 'Unauthorized' }),
+    swagger_1.ApiResponse({ status: 401, description: 'Ce compte existe déjà' }),
     swagger_1.ApiOperation({ summary: 'Create new user' }),
     __param(0, common_1.Body(common_1.ValidationPipe)),
     __metadata("design:type", Function),

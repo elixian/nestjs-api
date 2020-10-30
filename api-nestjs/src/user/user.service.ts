@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, InternalServerErrorException, Logger, NotFoundException, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { UserDto } from './dto/user.dto';
@@ -19,7 +19,7 @@ export class UserService implements IUser {
             await user.save();
         } catch (error) {
             if(error.code === 11000){
-                throw new ConflictException('Username already exist');
+                throw new HttpException('Username already exist',HttpStatus.BAD_REQUEST);
             }else{
                 throw new InternalServerErrorException();
             }
