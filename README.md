@@ -32,6 +32,24 @@ $ npm run serve:dev
 # production mode
 $ npm run start:prod 
 ```
+## UI access
+
+la partie frontend de test est accessible via deux logins:
+
+Administrateur permet de tester les accès administrateur
+
+```
+username : admin
+password : admin
+```
+Accès simple (no privilege)
+
+```
+username : reader
+password : reader
+```
+
+
 
 ## License
 
