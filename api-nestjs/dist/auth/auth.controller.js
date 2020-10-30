@@ -20,6 +20,8 @@ const common_1 = require("@nestjs/common");
 const passport_1 = require("@nestjs/passport");
 const get_user_decorator_1 = require("./get-user.decorator");
 const swagger_1 = require("@nestjs/swagger");
+const roles_guard_1 = require("./roles.guard");
+const roles_decorator_1 = require("./roles.decorator");
 let AuthController = class AuthController {
     constructor(authService) {
         this.authService = authService;
@@ -33,12 +35,16 @@ let AuthController = class AuthController {
     async test(user) {
         console.log('test', user);
     }
+    async testRoleGuard() {
+        console.log('test');
+    }
 };
 __decorate([
     common_1.Post('signup'),
     swagger_1.ApiResponse({ status: 200, description: 'Return JWT payload' }),
     swagger_1.ApiResponse({ status: 400, description: 'Bad Request (account already exists, validation failed, ...)' }),
-    swagger_1.ApiOperation({ summary: 'Créer un utilisateur' }),
+    swagger_1.ApiResponse({ status: 401, description: 'Unauthorized' }),
+    swagger_1.ApiOperation({ summary: 'Create new user' }),
     __param(0, common_1.Body(common_1.ValidationPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [credentials_dto_1.CredentialsDto]),
@@ -55,7 +61,7 @@ __decorate([
 ], AuthController.prototype, "signIn", null);
 __decorate([
     common_1.Post('/test'),
-    common_1.UseGuards(passport_1.AuthGuard()),
+    common_1.UseGuards(roles_guard_1.RolesGuard),
     swagger_1.ApiBearerAuth(),
     swagger_1.ApiResponse({ status: 403, description: 'Forbidden.' }),
     __param(0, get_user_decorator_1.GetUser()),
@@ -63,6 +69,14 @@ __decorate([
     __metadata("design:paramtypes", [user_schema_1.User]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "test", null);
+__decorate([
+    common_1.Get('/test'),
+    roles_decorator_1.Roles('contributeur'),
+    common_1.UseGuards(passport_1.AuthGuard('jwt'), roles_guard_1.RolesGuard),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "testRoleGuard", null);
 AuthController = __decorate([
     swagger_1.ApiTags('auth'),
     common_1.Controller('auth'),

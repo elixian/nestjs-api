@@ -13,6 +13,8 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
+const roles_guard_1 = require("./../auth/roles.guard");
+const user_dto_1 = require("./dto/user.dto");
 const user_service_1 = require("./user.service");
 const common_1 = require("@nestjs/common");
 const passport_1 = require("@nestjs/passport");
@@ -20,6 +22,8 @@ const swagger_1 = require("@nestjs/swagger");
 const platform_express_1 = require("@nestjs/platform-express");
 const multer_1 = require("multer");
 const path_1 = require("path");
+const roles_decorator_1 = require("../auth/roles.decorator");
+const user_roles_1 = require("./user.roles");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
@@ -31,6 +35,9 @@ let UserController = class UserController {
         common_1.Logger.debug(res.sendFile('Florian-1f79.jpg', { root: 'files' }));
         return res.sendFile('Florian-1f79.jpg', { root: 'files' });
     }
+    async createUser(userDto) {
+        return await this.userService.createUser(userDto);
+    }
     async uploadedFile(file) {
         const response = {
             originalname: file.originalname,
@@ -41,7 +48,8 @@ let UserController = class UserController {
 };
 __decorate([
     common_1.Get('all'),
-    common_1.UseGuards(passport_1.AuthGuard('jwt')),
+    roles_decorator_1.Roles(user_roles_1.UserRoles.admin),
+    common_1.UseGuards(passport_1.AuthGuard('jwt'), roles_guard_1.RolesGuard),
     swagger_1.ApiOperation({ summary: 'Get all users' }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
@@ -54,6 +62,16 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "test", null);
+__decorate([
+    common_1.Post('create'),
+    roles_decorator_1.Roles(user_roles_1.UserRoles.admin),
+    common_1.UseGuards(passport_1.AuthGuard('jwt'), roles_guard_1.RolesGuard),
+    swagger_1.ApiBearerAuth(),
+    __param(0, common_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [user_dto_1.UserDto]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "createUser", null);
 __decorate([
     common_1.Post('upload'),
     common_1.UseInterceptors(platform_express_1.FileInterceptor('file', {

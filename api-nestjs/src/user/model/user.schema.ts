@@ -22,6 +22,12 @@ export class User {
         maxlength: 1025
     })
     password: string
+
+    @Prop({
+        required: true,
+        lowercase:true,
+    })
+    role : string
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

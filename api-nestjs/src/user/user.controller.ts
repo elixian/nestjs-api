@@ -1,12 +1,15 @@
+import { RolesGuard } from './../auth/roles.guard';
+import { UserDto } from './dto/user.dto';
 import { UserService } from './user.service';
 import { UserDocument } from './model/user.schema';
-import { Controller, Get, Logger, Post, Res, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, Logger, Post, Res, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
-import { get } from 'http';
+import {Roles} from '../auth/roles.decorator';
+import {UserRoles} from './user.roles'
 @ApiTags('user')
 @Controller('user')
 export class UserController {
@@ -15,7 +18,8 @@ export class UserController {
     ){}
 
     @Get('all')
-    @UseGuards(AuthGuard('jwt'))
+    @Roles(UserRoles.admin)
+    @UseGuards(AuthGuard('jwt'),RolesGuard)
     @ApiOperation({ summary: 'Get all users' })
     async getAllUsers():Promise<UserDocument[]>{
         return await this.userService.getListUsers();
@@ -25,6 +29,14 @@ export class UserController {
     test( @Res() res) {
         Logger.debug(res.sendFile('Florian-1f79.jpg', { root: 'files' }))
         return res.sendFile('Florian-1f79.jpg', { root: 'files' });
+    }
+
+    @Post('create')
+    @Roles(UserRoles.admin)
+    @UseGuards(AuthGuard('jwt'),RolesGuard)
+    @ApiBearerAuth()
+    async createUser(@Body() userDto: UserDto):Promise<UserDocument>{
+        return await this.userService.createUser(userDto);
     }
 
 
