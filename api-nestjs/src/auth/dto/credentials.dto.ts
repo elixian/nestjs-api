@@ -2,7 +2,7 @@ import { IsString, MaxLength, MinLength } from "class-validator";
 import {  ApiProperty } from '@nestjs/swagger';
 export class CredentialsDto {
 
-    @IsString()
+    @IsString({message: "Le nom ne peut être vide"})
     @MinLength(4, {message: "Le nom doit avoir au moins 4 caractères"})
     @MaxLength(20)
     @ApiProperty({
@@ -13,9 +13,8 @@ export class CredentialsDto {
     })
     public username:string;
 
-    @IsString()
+    @IsString({message: "Le mot de passe est obligatoire"})
     @MinLength(4, {message: "Le mot de passe doit avoir une longueur minimal de 4 caractères"})
-    @MaxLength(50)
     @ApiProperty(
         {
             description: 'Le mot de passe utilisateur',
@@ -26,7 +25,7 @@ export class CredentialsDto {
     )
     public password:string;
 
-    @IsString()
+    @IsString({message: "Selectionner un role"})
     @ApiProperty()
     public role:string
 }
