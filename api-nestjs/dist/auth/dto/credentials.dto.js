@@ -15,7 +15,7 @@ const swagger_1 = require("@nestjs/swagger");
 class CredentialsDto {
 }
 __decorate([
-    class_validator_1.IsString(),
+    class_validator_1.IsString({ message: "Le nom ne peut être vide" }),
     class_validator_1.MinLength(4, { message: "Le nom doit avoir au moins 4 caractères" }),
     class_validator_1.MaxLength(20),
     swagger_1.ApiProperty({
@@ -27,9 +27,8 @@ __decorate([
     __metadata("design:type", String)
 ], CredentialsDto.prototype, "username", void 0);
 __decorate([
-    class_validator_1.IsString(),
+    class_validator_1.IsString({ message: "Le mot de passe est obligatoire" }),
     class_validator_1.MinLength(4, { message: "Le mot de passe doit avoir une longueur minimal de 4 caractères" }),
-    class_validator_1.MaxLength(50),
     swagger_1.ApiProperty({
         description: 'Le mot de passe utilisateur',
         minimum: 4,
@@ -39,7 +38,7 @@ __decorate([
     __metadata("design:type", String)
 ], CredentialsDto.prototype, "password", void 0);
 __decorate([
-    class_validator_1.IsString(),
+    class_validator_1.IsString({ message: "Selectionner un role" }),
     swagger_1.ApiProperty(),
     __metadata("design:type", String)
 ], CredentialsDto.prototype, "role", void 0);

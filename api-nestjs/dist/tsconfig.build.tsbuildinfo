@@ -2377,7 +2377,7 @@
         "affectsGlobalScope": false
       },
       "../src/auth/dto/credentials.dto.ts": {
-        "version": "6a2c18f8d67e668871f2ad431bb8e008b105235308a010cde7faf49d24285f75",
+        "version": "23c68fafbfef241f68af8db1f8e10376a214fa19c2510d9a77d667f91ee9bc13",
         "signature": "0982fbe74aebc0189bc42c29a2f617e8feb0a2fa7cfe4e3787124fbf78e733ee",
         "affectsGlobalScope": false
       },
