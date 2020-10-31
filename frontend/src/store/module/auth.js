@@ -31,7 +31,7 @@ export default {
     actions: {
         registerUser(_, credentials) {
             return new Promise((resolve, reject) => {
-                axios.post('auth/signup', credentials).catch(({response}) => {
+                axios.post('auth/signup', credentials).then(({data})=> resolve(data)).catch(({response}) => {
                     reject(response)
                 })
             })

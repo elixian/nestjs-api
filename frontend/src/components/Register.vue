@@ -34,6 +34,10 @@
     <ul>
       <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
     </ul>
+    <hr>
+    <ul>
+      <li v-for="user in listUsers" :key="user.username">{{`user: ${user.username} | role : ${user.role}`  }}</li>
+    </ul>
   </div>
 </template>
 
@@ -45,10 +49,9 @@ export default {
   data() {
     return {
       user: {
-        username: "",
-        password: "",
-        role: null,
+
       },
+      listUsers:[],
 
       errors: null,
     };
@@ -63,9 +66,16 @@ export default {
     ...mapActions("auth", ["registerUser"]),
     register() {
       this.registerUser(this.user)
-        .then(() => this.$router.push({ path: "/" }))
+        .then((data) =>{
+          this.listUsers.push(data);
+           this.user = {}
+          //  this.$router.push({ path: "/" })
+        })
         .catch((err) =>{
-          this.errors = err.data;
+          console.log(err);
+          this.errors = err;
+          if(err.status === 409) this.errors =['Utilisateur déjà existant'];
+          if(err.status === 400) this.errors = err.data.message; 
           this.user = {}
         });
     },

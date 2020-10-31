@@ -6,8 +6,12 @@
       /></router-link>
     </div>
     <div class="nav-site" v-if="isAdmin">
+      <div class="b-nav">
        <router-link class="b-link" to="/admin">Admin</router-link>
-       <router-link class="b-link" to="/register">AddUSers</router-link>
+       <ul class="sub-nav">
+         <li><router-link class="b-link" to="/register">AddUSers</router-link></li>
+       </ul>
+       </div>
     </div>
     <div class="ml(auto) d(flex)">
       <ul class="b-link">
@@ -78,6 +82,31 @@ $a-tags-hover: "a:active, a:hover";
     #{$a-tags-hover}{
       color: lighten($color-link-nav,15%)
     }
+      
+    .b-nav{
+      width:200px;
+      margin:0 auto;
+      position:relative;
+      &:hover .sub-nav{
+        top:15px;
+        opacity:1;
+        transition: all 0.5s ease-in-out;
+      }
+    }
+
+    .sub-nav{
+
+      position: absolute;
+      opacity:0;
+      display: block;
+      padding: 10px;
+      top: 0 px;
+      left:50%;
+      transform: translateX(-50%);
+      transition: all 0.5s linear;
+    }
+
+  
   }
 
   .b-link {
