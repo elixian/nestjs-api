@@ -9,7 +9,7 @@
       <div class="b-nav">
        <router-link class="b-link" to="/admin">Admin</router-link>
        <ul class="sub-nav">
-         <li><router-link class="b-link" to="/register">AddUSers</router-link></li>
+         <li><router-link class="b-link" to="/register">Ajouter un user</router-link></li>
        </ul>
        </div>
     </div>
@@ -103,7 +103,7 @@ $a-tags-hover: "a:active, a:hover";
       top: 0 px;
       left:50%;
       transform: translateX(-50%);
-      transition: all 0.5s linear;
+    
     }
 
   

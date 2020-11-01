@@ -6,7 +6,7 @@
     </form>
     <hr>
     <h2>Register Test</h2>
-    <Register/>
+
   </div>
 </template>
 
