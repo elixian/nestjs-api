@@ -9,6 +9,9 @@ export default {
         user: state => {
             return state.user;
         },
+        jwt: state =>{
+            return state.user.accessToken;
+        },
         isAdmin: state =>{
             return !!state.user && state.user.role === 'admin'
         },
