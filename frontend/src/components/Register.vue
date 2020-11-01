@@ -6,7 +6,7 @@
         <label for="username">
           Nom utilisateur
           <input type="text" name="username" v-model="user.username" />
-          <p class="error" v-if=" user.username === ''">
+          <p class="error" v-if="user.username === ''">
             Le nom utilisateur ne peut être vide
           </p>
         </label>
@@ -50,7 +50,18 @@
 <script>
 import { mapActions } from "vuex";
 import { Roles } from "@/store/enum/roles";
+import axios from 'axios'
 export default {
+ async mounted() {
+
+  const { accessToken } = JSON.parse(localStorage.getItem('user') )
+     axios.get('/user/all',{
+      headers: {
+        'Authorization': `Bearer ${accessToken}`
+      }
+    })
+      .then(({data})=> this.listUsers = data )
+  },
   data() {
     return {
       user: {},
@@ -84,11 +95,9 @@ export default {
     },
   },
 };
-
 </script>
 
 <style lang="scss" scoped>
-
 #form-register {
   display: flex;
   margin: 0 auto;
@@ -100,7 +109,7 @@ export default {
 }
 
 .W-inputs {
-  position:relative;
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -118,7 +127,7 @@ export default {
     height: 30px;
     border-radius: 3px;
     outline: none;
-    margin-top:5px;
+    margin-top: 5px;
     border: 1px solid #919191;
   }
 
@@ -126,16 +135,16 @@ export default {
     align-self: flex-end;
   }
 
-.btn-post{
-  height: 30px;
-  background: rgb(84, 141, 226);
-  border:1px solid #d5d5d5;
-  padding: 10px;
-  line-height: 10px;
-  outline: none;
-  cursor: pointer;
-}
-  .error{
+  .btn-post {
+    height: 30px;
+    background: rgb(84, 141, 226);
+    border: 1px solid #d5d5d5;
+    padding: 10px;
+    line-height: 10px;
+    outline: none;
+    cursor: pointer;
+  }
+  .error {
     position: absolute;
     display: block;
     width: max-content;
