@@ -38,7 +38,7 @@ body {
   height:100%;
 }
 #main {
-  max-width: 80%;
+  width: 80%;
   align-self: center;
   margin-top:5rem;
 }
