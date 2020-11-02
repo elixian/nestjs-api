@@ -7,9 +7,13 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './model/user.schema';
 import { HashSecurity } from '../shared/hash/hash.security';
 
+
+import { MailModule } from './../mail/mail.module';
+
 @Module({
     imports: [
         SecurityModule,
+        MailModule,
         MongooseModule.forFeatureAsync(
             [
                 {

@@ -25,11 +25,10 @@ export class UserController {
         return await this.userService.getListUsers();
     }
 
-    @Get()
-    test( @Res() res) {
-        Logger.debug(res.sendFile('Florian-1f79.jpg', { root: 'files' }))
-        return res.sendFile('Florian-1f79.jpg', { root: 'files' });
-    }
+    // @Get()
+    // test( @Res() res) {
+    //     return res.sendFile('Florian-1f79.jpg', { root: 'files' });
+    // }
 
     @Post('create')
     @Roles(UserRoles.admin)
@@ -73,4 +72,6 @@ export class UserController {
       };
       return response;
     }
+
+  
 }

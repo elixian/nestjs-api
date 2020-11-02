@@ -1,3 +1,4 @@
+import { MailModule } from 'src/mail/mail.module';
 import { JwtStrategy } from './jwt.strategy';
 import { SecurityModule } from './../shared/security.module';
 import { HashSecurity } from '../shared/hash/hash.security';
@@ -15,8 +16,8 @@ import { UserSchema } from 'src/user/model/user.schema';
 
 @Module({
   imports: [
-    UserModule,
     SecurityModule,
+    MailModule,
     MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
