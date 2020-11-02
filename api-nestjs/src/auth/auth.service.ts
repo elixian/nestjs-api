@@ -3,7 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import { HashSecurity } from './../shared/hash/hash.security';
 import { UserDto } from './../user/dto/user.dto';
 import { UserService } from './../user/user.service';
-import { Injectable, Logger, UnauthorizedException, ConflictException } from '@nestjs/common';
+import { Injectable, Logger, UnauthorizedException, ConflictException, NotFoundException, HttpException } from '@nestjs/common';
 import { CredentialsDto } from './dto/credentials.dto';
 import { IToken } from './interface/IToken';
 
@@ -34,7 +34,7 @@ export class AuthService {
 
     async signIn(credentialsDto: CredentialsDto): Promise<IToken> {
         const { password, username } = credentialsDto;
-        Logger.log(`credential : ${JSON.stringify(credentialsDto)}`,'AuthService signIn');
+        Logger.log(`credential : ${JSON.stringify(credentialsDto)}`, 'AuthService signIn');
 
         try {
             //retrieve User
@@ -45,17 +45,35 @@ export class AuthService {
             if (isMatch) {
                 Logger.log(`isMatch : ${JSON.stringify(credentialsDto)}`, 'AuthService signIn');
                 //on créé le Token
-                const payload = { username , role: user.role };
-                Logger.log(payload,'payload ')
+                const payload = { username, role: user.role };
                 const accessToken = await this.jwtService.sign(payload);
                 // on retourne les infos que l'on veut retourner :p
-                return { username, accessToken, role:user.role };
+                return { username, accessToken, role: user.role };
             }
             throw new UnauthorizedException('Invalid credentials');
         } catch (error) {
             throw new UnauthorizedException('Invalid credentials');
         }
 
+    }
+
+
+    async updateUser(userDto: CredentialsDto): Promise<IToken> {
+        Logger.debug(`value password ${userDto.password}`)
+        if(!!userDto.password && userDto.password.length < 5  ) throw new HttpException('Password too short',401);
+        if(!!userDto.password){
+            const hashedPassword = await HashSecurity.genHashPassword(userDto.password);
+            Logger.debug(`is Modified Password : ${hashedPassword}`, 'password hashed')
+            userDto.password = hashedPassword;
+        }
+        const {username,role} = await this.userService.updateUser( userDto)
+        const payload = {
+            username,
+            role
+        }
+        const accessToken = await this.jwtService.sign(payload)
+        return {username, role, accessToken }
+        
     }
 }
 

@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, MaxLength, MinLength } from "class-validator";
+import { IsNotEmpty, IsString, MaxLength, MinLength } from "class-validator";
 
 export class UserDto {
     // createdAt:string;
@@ -17,6 +17,7 @@ export class UserDto {
     username:string;
 
     @IsString()
+    @IsNotEmpty()
     @MinLength(4)
     @MaxLength(50)
     @ApiProperty(
@@ -38,5 +39,5 @@ export class UserDto {
             maximum:50,
         }
     )
-    role:string;
+    role:string = 'reader';
 }

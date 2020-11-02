@@ -1,6 +1,7 @@
 import { ConflictException, Injectable, InternalServerErrorException, Logger, NotFoundException, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { HashSecurity } from 'src/shared/hash/hash.security';
 import { UserDto } from './dto/user.dto';
 import { IUser } from './interface/Iusers.services';
 import {User, UserDocument} from './model/user.schema'
@@ -42,6 +43,17 @@ export class UserService implements IUser {
             throw new NotFoundException();
         }
         return user;
+    }
+
+    async updateUser(userDto: UserDto): Promise<UserDocument> {
+        const updateUser = await this.userModel.findOneAndUpdate({ username: userDto.username }, { $set: userDto }, { new: true })
+        if (updateUser) {
+            Logger.log(`User ${updateUser.username} updated`, 'UserService.update()');
+            return updateUser;
+        } else {
+            Logger.error(`User ${updateUser.username} not updated : doesn't exist`, null, 'UserService.update()');
+            throw new NotFoundException();
+        }
     }
 
 }

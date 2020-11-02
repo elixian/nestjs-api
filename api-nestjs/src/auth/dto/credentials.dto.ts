@@ -1,4 +1,4 @@
-import { IsString, MaxLength, MinLength } from "class-validator";
+import { IsNotEmpty, IsString, MaxLength, MinLength } from "class-validator";
 import {  ApiProperty } from '@nestjs/swagger';
 export class CredentialsDto {
 
@@ -23,6 +23,7 @@ export class CredentialsDto {
             maximum:50,
         }
     )
+  
     public password:string;
 
     @IsString({message: "Selectionner un role"})
