@@ -2,7 +2,7 @@ import { RolesGuard } from './../auth/roles.guard';
 import { UserDto } from './dto/user.dto';
 import { UserService } from './user.service';
 import { UserDocument } from './model/user.schema';
-import { Body, Controller, Get, Logger, Post, Res, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, Logger, Post, Put, Res, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -39,6 +39,7 @@ export class UserController {
         return await this.userService.createUser(userDto);
     }
 
+    
 
     
     @Post('upload')

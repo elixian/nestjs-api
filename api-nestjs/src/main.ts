@@ -53,14 +53,14 @@ async function bootstrap() {
     admin.password = 'admin';
     admin.username = 'admin';
     admin.role = UserRoles.admin;
-    Logger.log(JSON.stringify(admin),'Create user admin');
+    Logger.log(admin,'Create user admin');
     await userService.createUser(admin);
 
     const reader = new UserDto();
     reader.password = 'reader';
     reader.username = 'reader';
     reader.role = UserRoles.reader;
-    Logger.log(JSON.stringify(reader),'Create user reader');
+    Logger.log(reader,'Create user reader');
     await userService.createUser(reader);
   }
 }

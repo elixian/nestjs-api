@@ -2,7 +2,7 @@ import { User } from './../user/model/user.schema';
 import { IToken } from './interface/IToken';
 import { CredentialsDto } from './dto/credentials.dto';
 import { AuthService } from './auth.service';
-import { Body, Controller, Get, Post, UseGuards, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, Post, Put, UseGuards, ValidationPipe } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from './get-user.decorator';
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -31,6 +31,10 @@ export class AuthController {
         return await this.authService.signIn(credentialDto);
     }
 
+    @Put('update')
+    async updateUser(@Body() credentialDto: CredentialsDto):Promise<IToken>{
+      return await this.authService.updateUser(credentialDto);
+    }
 
 
     @Post('/test')
