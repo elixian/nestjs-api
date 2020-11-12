@@ -4,7 +4,6 @@ import { SecurityModule } from './../shared/security.module';
 import { HashSecurity } from '../shared/hash/hash.security';
 import { AuthController } from './auth.controller';
 import { UserService } from './../user/user.service';
-import { UserModule } from './../user/user.module';
 import { JwtModule } from '@nestjs/jwt';
 import { Module } from '@nestjs/common';
 
@@ -21,13 +20,11 @@ import { UserSchema } from 'src/user/model/user.schema';
     MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
-      secret: 'toto',
+      secret: 'MySecretKey',
       signOptions: {
         expiresIn: 3600,
       },
     }),
-
-
   ],
   controllers: [AuthController],
   providers: [AuthService, UserService, HashSecurity, JwtStrategy],

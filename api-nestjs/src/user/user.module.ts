@@ -2,7 +2,7 @@
 import { SecurityModule } from './../shared/security.module';
 import { UserService } from './user.service';
 import { UserController } from './user.controller';
-import { Module, Logger } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './model/user.schema';
 import { HashSecurity } from '../shared/hash/hash.security';
